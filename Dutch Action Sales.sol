@@ -10,7 +10,7 @@ interface IERC721 {
 }
 
 contract DutchAuction {
-    uint private constant DURATION = 7 days;
+    uint private constant DURATION = 10 days;
 
     IERC721 public immutable nft;
     uint public immutable nftId;
@@ -40,7 +40,7 @@ contract DutchAuction {
     }
 
     function getPrice() public view returns (uint) {
-        uint timeElapsed = block.timestamp - startAt;
+        uint timeElapsed = (block.timestamp - startAt) * 60;
         uint discount = discountRate * timeElapsed;
         return startingPrice - discount;
     }
